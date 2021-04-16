@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="ISO-8859-1">
+<!doctype html>
+<html lang="pt-br">
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilo.css">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
+   
     <title> WRC FILMES</title>
     <link rel="icon" href="imagens/favicon.png">
   </head>
@@ -38,13 +37,15 @@
          <!--navbar-->
         <div class="collapse navbar-collapse" id="barra-navegacao">
           <ul class="nav navbar-nav navbar-right">
+           
             <li><a href="">Filmes</a></li>
             <li><a href="">Series</a></li>
-            <li><a href="">Pessoa</a></li>
+            <li><a href="">Perfil</a></li>
             <li class="divisor" role="separator"></li>
             <li><a href="">Inscreva-se</a></li>
             <li><a href="">Entrar</a></li>
           </ul>
+        
         </div>
       </div> <!--container-->
     </nav>  <!--nav-->
@@ -66,15 +67,15 @@
           
           <div class="col-md-6">
             <div class="row albuns">
-              <!-- <div class="col-md-6">
-                <img src="imagens/img2.jpg" class="img-responsive">
-              </div>
+<!--                <div class="col-md-6"> -->
+<!--                 <img src="imagens/img2.jpg" class="img-responsive"> -->
+<!--               </div> -->
 
-              <div class="col-md-6">
-                <img src="imagens/img4.jpg" class="img-responsive">
-              </div>
+<!--               <div class="col-md-6"> -->
+<!--                 <img src="imagens/img4.jpg" class="img-responsive"> -->
+<!--               </div> -->
 
-            </div> -->
+<!--             </div>  -->
               
 
             <!-- <div class="row albuns">
@@ -119,31 +120,51 @@
         <div class="row">
 
           <div class="col-md-4" > 
-            <h2>Facíl</h2>
+           <div id="chart"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: [ 'corechart' ] })
+        google.charts.setOnLoadCallback(drawChart)
+        
 
-            <h3>Buscar</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit </p>
+        function drawChart() {
+            const container = document.querySelector('#chart')
+            const data = new google.visualization.arrayToDataTable([
+                [ 'Filmes', 'Ki' ],
+                [ 'SONIC: O FILME', 10000 ],
+                [ 'BAD BOYS PARA SEMPRE', 9000 ],
+                [ 'AVES DE RAPINA', 8000 ],
+                [ 'O HOMEM INVISÍVEL', 5000 ],
+                [ 'JOIAS BRUTAS', 2000 ]
+            ])
+            const options = {
+                title: 'Filmes mais pesquisados de 2020.',
+                height: 400,
+                width: 720
+            }
 
-            <h3>Navegar</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit</p>
-
-            <h3>Descobrir</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit </p>
+            // const chart = new google.visualization.ColumnChart(container)
+            // const chart = new google.visualization.BarChart(container)
+            // const chart = new google.visualization.LineChart(container)
+            const chart = new google.visualization.PieChart(container)
+            chart.draw(data, options)
+        }
+    </script>
           </div>
 
           <!--img recursos-->
-          <div class="col-md-8"> 
-            <div class="row rotacionar">
+          <div class="col-md-8">
+             <!-- <div class="row rotacionar">
 
-<!--  
               <div class="col-md-4" ">
                 <img src="imagens/iphone1.png" class="img-responsive">
               </div>
 
               <div class="col-md-4">
                 <img src="imagens/iphone2.png" class="img-responsive">
-              </div>
--->
+              </div>--> 
+           
+
     
 
             </div>
@@ -161,22 +182,14 @@
             <span class="img-logo">Spotify</span>
           </div>
 
-          <div class="col-md-2">
-            <h4>Company</h4>
-            <ul class="nav">
-              <li><a href="">Sobre</a></li>
-              <li><a href="">Empregos</a></li>
-              <li><a href="">Imprensa</a></li>
-              <li><a href="">Novidade</a></li>
-            </ul>
-          </div>
+         
 
           <div class="col-md-2">
-            <h4>Comunidades</h4>
+            <h4>Trabalho Realizado Por:</h4>
             <ul class="nav">
-              <li><a href="">Artistas</a></li>
-              <li><a href="">Desenvolvedores</a></li>
-              <li><a href="">Marcas</a></li>
+              <li><a href="">Pedro Belão</a></li>
+              <li><a href="">Ricardo Venâncio</a></li>
+              <li><a href="">Willian Cavalcante</a></li>
             </ul>
           </div>
 
@@ -201,7 +214,7 @@
         
       </div>
     </footer>
-console.log();
+
 
 
 

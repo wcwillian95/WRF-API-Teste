@@ -133,14 +133,14 @@ body h1 {
 								%>
 								<tr class="active-row">
 									<td><%=lista.get(i).getId()%></td>
-									<td><%=lista.get(i).getOriginal_title()%></td>
+									<td><%=lista.get(i).getRank()%></td>
 									<td><%=lista.get(i).getTitle()%></td>
-									<td><%=lista.get(i).getOriginal_language()%></td>
-									<td><%=lista.get(i).getOverview()%></td>
-									<td><%=lista.get(i).getPoster_path()%></td>
-									<td><%=lista.get(i).getRelease_date()%></td>
-									<td><%=lista.get(i).getMedia_type()%></td>
-									<td><%=lista.get(i).getVote_average()%></td>
+									<td><%=lista.get(i).getFullTitle()%></td>
+									<td><%=lista.get(i).getYear()%></td>
+									<td><%=lista.get(i).getImage()%></td>
+									<td><%=lista.get(i).getCrew()%></td>
+									<td><%=lista.get(i).getImDbRating()%></td>
+									<td><%=lista.get(i).getImDbRatingCount()%></td>
 								</tr>
 								<%
 								}

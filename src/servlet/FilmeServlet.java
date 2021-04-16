@@ -3,9 +3,13 @@ package servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +18,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import entity.*;
-import dao.*;
-import java.util.*;
+
+import dao.FilmeDao;
+import entity.Filme;
 
 @WebServlet(name = "filmez", urlPatterns = "/viewFilmes/filmez")
 public class FilmeServlet extends HttpServlet {
@@ -49,47 +52,55 @@ public class FilmeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String sURL = "https://api.themoviedb.org/3/trending/all/week?language=pt-BR&api_key=2e0ae99af7d2c9c2ae236f403d6c111c";
+		String sURL = "https://imdb-api.com/en/API/Top250Movies/k_jw6z7bdy";
 
 		// Connect to the URL using java's native library
 		URL url = new URL(sURL);
 		URLConnection json = url.openConnection();
 		json.connect();
 
-		Reader in = new InputStreamReader(getClass().getResourceAsStream("/WebContent/WEB-INF/text.txt") );
 		// Convert to a JSON object to print data
-		response.getWriter().append(in + "");
 		JsonParser jp = new JsonParser();
-		JsonElement root = jp.parse(new InputStreamReader((InputStream) json.getContent()));
+		JsonElement root = jp.parse(new InputStreamReader((InputStream) json.getContent()));// {"items":[{"id":"tt0111161"
 		JsonObject rootobj = root.getAsJsonObject();
-		JsonElement code = rootobj.get("results");
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		JsonElement code = rootobj;
+		Gson gson = new GsonBuilder().create();
+		JsonArray jsonArray = rootobj.getAsJsonArray("items");
+
+		Filme[] arrayFilmes = gson.fromJson(jsonArray, Filme[].class);
+		response.getWriter().append(Arrays.asList(arrayFilmes) + "");
 
 		// Convertendo um objeto Java para JSON e retorna uma String JSON formatada.
-		String JsonConvertido = gson.toJson(code);
-		
-		JSONObject jsonObjectFilmes = new JSONObject(JsonConvertido);
-
+//		String JsonConvertido = gson.toJson(code);
+//
+//		JSONArray jsonObjectFilmes = new JSONArray(JsonConvertido);
+//
 		List<Filme> listaFilmes = new ArrayList<Filme>();
-
-		Iterator<String> iteratorFilmes = jsonObjectFilmes.keys();
-
-		while (iteratorFilmes.hasNext()) {
-			JSONObject dadosFilmes = jsonObjectFilmes.getJSONObject(iteratorFilmes.next());
-
+//
+//		System.out.println(arrayFilmes);
+//		Iterator<String> iteratorFilmes = jsonObjectFilmes;
+//
+		for (int i = 0; i < arrayFilmes.length; i++) {
 			Filme filmes = new Filme();
-			filmes.setOriginal_title(dadosFilmes.getString("original_title"));
-			filmes.setTitle(dadosFilmes.getString("title"));
-			filmes.setMedia_type(dadosFilmes.getString("media_type"));
-			filmes.setOriginal_language(dadosFilmes.getString("original_language"));
-			filmes.setOverview(dadosFilmes.getString("overview"));
-			filmes.setPoster_path(dadosFilmes.getString("poster_path"));
-			filmes.setRelease_date(java.sql.Date.valueOf((dadosFilmes.getString("release_date"))));
-			filmes.setVote_average(dadosFilmes.getDouble("vote_average"));
+			filmes.setId(arrayFilmes[i].getId());
+			filmes.setRank(arrayFilmes[i].getRank());
+			filmes.setTitle(arrayFilmes[i].getTitle());
+			filmes.setFullTitle(arrayFilmes[i].getFullTitle());
+			filmes.setYear(arrayFilmes[i].getYear());
+			filmes.setImage(arrayFilmes[i].getImage());
+			filmes.setCrew(arrayFilmes[i].getCrew());
+			filmes.setImDbRating(arrayFilmes[i].getImDbRating());
+			filmes.setImDbRatingCount(arrayFilmes[i].getImDbRatingCount());
 
 			listaFilmes.add(filmes);
+			System.out.println(listaFilmes);
 			filmeDao.AddFilmes(filmes);
+
 		}
+//			JSONObject dadosFilmes = jsonObjectFilmes.getJSONObject(iteratorFilmes.next());
+//			response.getWriter().append(dadosFilmes + "");
+
+//		}
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)

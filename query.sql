@@ -1,15 +1,15 @@
 create database wrcfilmes
 
-use wrcfilmes
+use wrcfilmes;
 
 create table filme(
-id int primary key auto_increment,
-original_title varchar(255),
+id varchar(255) primary key ,
+varrank varchar(255),
 title  varchar(255),
-original_language varchar(5),
-overview  varchar(255),
-poster_path varchar(255),
-release_date date,
-vote_average double,
-media_type varchar(25)
+fullTitle varchar(5),
+varyear  varchar(255),
+image varchar(255),
+crew varchar(25),
+imDbRating varchar(25),
+imDbRatingCount varchar(25)
 )
