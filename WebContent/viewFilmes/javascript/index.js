@@ -1,4 +1,4 @@
-const sliders = document.querySelector(".carouselbox");
+const sliders = document.querySelector(".movieRow--listarea");
 var scrollPerClick;
 var ImagePadding = 20;
 
@@ -8,14 +8,11 @@ var ImagePadding = 20;
 var scrollAmount = 0;
 
 function sliderScrollLeft() {
-	console.log(scrollPerClick)
-
   sliders.scrollTo({
     top: 0,
     left: (scrollAmount -= scrollPerClick),
     behavior: "smooth",
   });
-	console.log(scrollAmount)
 
   if (scrollAmount < 0) {
     scrollAmount = 0;
@@ -25,15 +22,15 @@ function sliderScrollLeft() {
 }
 
 function sliderScrollRight() {
-	console.log(scrollAmount)
   if (scrollAmount <= sliders.scrollWidth - sliders.clientWidth) {
     sliders.scrollTo({
       top: 0,
       left: (scrollAmount += scrollPerClick),
       behavior: "smooth",
     });
-
   }
   console.log("Scroll Amount: ", scrollAmount);
 }
-scrollPerClick = 600;
+
+// For showing dynamic contents only
+

@@ -1,285 +1,311 @@
-
 /* -------- Layout --------- */
- html, body, .capa{
-    height: 100%;
-    overflow: auto;
+html, body, .capa {
+	height: 100%;
+	overflow: auto;
 }
 
-body{ 
-   
-    background: url('imagens/mulher-maravilha.png'), url('imagens/ruido.png'), linear-gradient(50deg, #ff4169,#7c26f8);
-    background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+body {
+	background: url('imagens/mulher_top.jpg'), url('imagens/ruido.png'),
+		linear-gradient(50deg, #ff4169, #7c26f8);
+	background-attachment: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	overflow-x: hidden;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 /* ====================== barra de navegação =================== */
-.img-logo{
-    height: 150px;
-    width: 190px;
-    display:block;
-    background: url('imagens/logo.png') no-repeat;
-    background-size: contain;
-    color: transparent;
+.img-logo {
+	height: 150px;
+	width: 190px;
+	display: block;
+	background: url('imagens/logo.png') no-repeat;
+	background-size: contain;
+	color: transparent;
 }
 
 nav.navbar-trasparente {
-    padding: 10px 0px;
-    background: rgba(10, 0, 0, 0.808);
-    border: none;
-    padding-top: 0px;
+	padding: 10px 0px;
+	background: rgba(10, 0, 0, 0.808);
+	border: none;
+	padding-top: 0px;
 }
 
-.navbar-brand{
-    padding-top: 5px 15px;
+.navbar-brand {
+	padding-top: 5px 15px;
 }
 
-.divisor{
-    width: 1px;
-    height: 16px;
-    background: white;
-    margin: 16px 10px;
+.divisor {
+	width: 1px;
+	height: 16px;
+	background: white;
+	margin: 16px 10px;
 }
 
-.navbar-inverse .navbar-nav>li>a, footer .nav a{
-    color:yellow;
+.navbar-inverse .navbar-nav>li>a, footer .nav a {
+	color: yellow;
 }
 
-.navbar-inverse .navbar-nav>li>a:hover, footer .nav a:hover{
-    color:white;
-    background: none;
+.navbar-inverse .navbar-nav>li>a:hover, footer .nav a:hover {
+	color: white;
+	background: none;
 }
-
 
 /* ================ Imagem capa =================== */
-
 .capa {
-    display: table;
-    width: 100%;
-    height: 30%;
+	display: table;
+	width: 100%;
+	height: 30%;
 }
 
-.texto-capa{
-    text-align: center;
-    color: yellow;
-    display: table-cell;
-    vertical-align: middle;
-    margin-left: 50%;
+.texto-capa {
+	text-align: center;
+	color: yellow;
+	display: table-cell;
+	vertical-align: middle;
+	margin-left: 50%;
 }
 
 /* ===================== Botoes ====================== */
-.btn-custom{
-    color: white;
-     border-radius: 300px;
-     padding: 5px 15px;
-     text-transform: uppercase;
-     transition: background 0.4, color 0.4;
-     
+.btn-custom {
+	color: white;
+	border-radius: 300px;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	transition: background 0.4, color 0.4;
 }
 
-.btn-roxo{
-background: gray;
+.btn-roxo {
+	background: gray;
 }
 
-.btn-roxo:hover{
-    background: white;
-    }
-
-.btn-branco{
-border: 2px solid white;
+.btn-roxo:hover {
+	background: white;
 }
 
-.btn-branco:hover{
-    background: white;
-    color: blue;
-    }
+.btn-branco {
+	border: 2px solid white;
+}
 
-    /* ===================== Servicos ====================== */
-    #servicos{
-        background: #363636;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        
-    }
+.btn-branco:hover {
+	background: white;
+	color: blue;
+}
 
-    .albuns{
-        padding: 10px 0px 10px 0px;
-    }
+/* ===================== Servicos ====================== */
+#servicos {
+	background: #363636;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
-    #recursos{
-        padding-top: 20px;
-        padding-bottom: 20px;
-        
-    }
+.albuns {
+	padding: 10px 0px 10px 0px;
+}
 
-    .rotacionar{
-        transform: rotate(30deg);
-        padding-left: 60px;
-        width: 900px;
-        height: 1300px;
-    }
+#recursos {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 
+.rotacionar {
+	transform: rotate(30deg);
+	padding-left: 60px;
+	width: 900px;
+	height: 1300px;
+}
 
-    /* ===================== Rodape ====================== */
-    footer{
-        background: #1C1C1C;
-        padding: 20px 0px 20px 0px;
-        position: relative;
-    }
+/* ===================== Rodape ====================== */
+footer {
+	background: #1C1C1C;
+	padding: 20px 0px 20px 0px;
+	position: relative;
+}
 
-    .item-rede-social{
-        float: right;
-    }
+.item-rede-social {
+	float: right;
+}
 
 /* ===================== Tipografia ====================== */
-h1{
-    font-size: 100px;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    margin-bottom: 50px;
+h1 {
+	font-size: 100px;
+	font-weight: 900;
+	letter-spacing: -0.05em;
+	margin-bottom: 50px;
 }
 
- @media screen and (max-width: 767px){
-     h1{
-         font-size: 50px;
-     }
-     .btn-custom{
-         margin: 10px 15px;
-     }
- }
-
- @media screen and (max-width: 768px){
-     h1{
-         font-size: 70px;
-     }
- }
-
-
-h2{
-    font-size: 50px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
+@media screen and (max-width: 767px) {
+	h1 {
+		font-size: 50px;
+	}
+	.btn-custom {
+		margin: 10px 15px;
+	}
 }
 
-h3{
-    font-size: 35px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
+@media screen and (max-width: 768px) {
+	h1 {
+		font-size: 70px;
+	}
 }
 
-#rodape h4{
- color: #919496;
- font-size: 12px;
- text-transform: uppercase;
+h2 {
+	font-size: 50px;
+	font-weight: 700;
+	letter-spacing: -0.05em;
 }
 
-#servicos h2, #servicos h3{
-    color: #01DF3A;
+h3 {
+	font-size: 35px;
+	font-weight: 700;
+	letter-spacing: -0.05em;
 }
 
-#recursos h3{
-    color: #9bf0e1;
-}
-#recursos h2{
-    color: white;
+#rodape h4 {
+	color: #919496;
+	font-size: 12px;
+	text-transform: uppercase;
 }
 
-#recursos p{
-    color: #A9D0F5;
+#servicos h2, #servicos h3 {
+	color: #01DF3A;
+}
+
+#recursos h3 {
+	color: #9bf0e1;
+}
+
+#recursos h2 {
+	color: white;
+}
+
+#recursos p {
+	color: #A9D0F5;
 }
 
 .carousel {
-    height: 200px;
-    width: 430%;
-    position: center;
-  }
-  .carousel .switchLeft,
-  .carousel .switchRight {
-    color: white;
-    font-weight: bold;
-    height: 95%;
-    width: 45px;
-    line-height: 200px;
-    font-size: 40px;
-    text-align: left;
-    background-color: rgba(0, 0, 0, 0.6);
-    font-family: sans-serif;
-    top: 0;
-    z-index: 3;
-  }
-  
-  .carousel .switchLeft {
-    position: absolute;
-    left: -50px;
-  }
-  
-  .carousel .switchRight {
-    position: absolute;
-  
-    right: -57px;
-  }
-  
-  .carouselbox {
-    height: 200px;
-    width: auto;
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    text-align: center;
-    padding-bottom: 10px !important;
-    display: flex;
-    align-items: center;
-  }
-  
-  .carouselbox img {
-    min-width: 147px;
-    max-width: 147px;
-    height: 200px;
-    background-size: cover;
-    background-color: lightgreen;
-    margin: 3px 7px;
-    cursor: pointer;
-    transition: 0.5s ease;
-    z-index: 2;
-  
-    /* margin: 15px; */
-  }
-  
-  .carouselbox img:hover {
-    transform: scale(1.1);
-    z-index: 5;
-  }
-  
-  /* CSS dos Filmes*/
-  
-  .movieRow{
-  margin-bottom:  30px;
+	height: 200px;
+	width: 430%;
+	position: center;
 }
+
+.carousel .switchLeft, .carousel .switchRight {
+	color: white;
+	font-weight: bold;
+	height: 95%;
+	width: 45px;
+	line-height: 200px;
+	font-size: 40px;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.6);
+	font-family: sans-serif;
+	top: 0;
+	z-index: 3;
+}
+
+.carousel .switchLeft {
+	position: absolute;
+	left: -50px;
+}
+
+.carousel .switchRight {
+	position: absolute;
+	right: -57px;
+}
+
+.carouselbox {
+	margin-top: 20px;
+	height: 200px;
+	width: auto;
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+	text-align: center;
+	padding-bottom: 10px !important;
+	display: flex;
+	align-items: center;
+}
+
+.carouselbox img {
+	min-width: 147px;
+	max-width: 147px;
+	height: 200px;
+	background-size: cover;
+	background-color: lightgreen;
+	margin: 3px 7px;
+	cursor: pointer;
+	transition: 0.5s ease;
+	z-index: 2;
+
+	/* margin: 15px; */
+}
+
+.carouselbox img:hover {
+	transform: scale(1.1);
+	z-index: 5;
+}
+
+/* CSS dos Filmes*/
+.movieRow {
+	margin-bottom: 30px;
+}
+
 .movieRow h2 {
-  margin: 0px 0px 0px 30px;
+	margin: 0px 0px 0px 30px;
 }
+
 .movieRow--listarea {
-  overflow-x: hidden;
-  padding-left: 30px;
+	overflow-x: hidden;
+	padding-left: 30px;
 }
+
 .movieRow--list {
-  width: 999999px;
+	width: 999999px;
+	display: flex;
 }
-.movieRow--item{
-  display: inline-block;
-  width: 150px;
-  cursor: pointer;
+
+.movieRow--item {
+	display: inline-block;
+	width: 150px;
+	cursor: pointer;
 }
+
 .movieRow--item img {
-  width: 100%;
-  transform: scale(0.9);
-  transition: all ease 0.2s;
-}
-.movieRow--item img:hover{
-  transform: scale(1);
+	width: 100%;
+	transform: scale(0.9);
+	transition: all ease 0.2s;
 }
 
+.movieRow--item img:hover {
+	transform: scale(1);
+}
 
+.movieRow--left, .movieRow--right {
+	position: absolute;
+	width: 40px;
+	height: 225px;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 99;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	cursor: pointer;
+	opacity: 0;
+	transition: all ease 0.5s;
+}
+
+.movieRow--left {
+	left: 0;
+}
+
+.movieRow--right {
+	right: 0;
+}
+.carousel:hover .movieRow--left,
+.carousel:hover .movieRow--right{
+	opacity: 1;
+}
+movieRow--list{
+	margin-left: scrollX;
+}
