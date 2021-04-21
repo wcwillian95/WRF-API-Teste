@@ -3,7 +3,7 @@
 <%@ page import="entity.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%
-ArrayList<Filme> lista = (ArrayList<Filme>) request.getAttribute("listaFilmes");
+ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) request.getAttribute("listaRecomendados");
 %>
 
 
@@ -79,6 +79,33 @@ body h1 {
 	font-style: italic;
 	font-size: 30px;
 }
+
+.movieRow{
+  margin-bottom:  30px;
+}
+.movieRow h2 {
+  margin: 0px 0px 0px 30px;
+}
+.movieRow--listarea {
+  overflow-x: hidden;
+  padding-left: 30px;
+}
+.movieRow--list {
+  width: 999999px;
+}
+.movieRow--item{
+  display: inline-block;
+  width: 150px;
+  cursor: pointer;
+}
+.movieRow--item img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.2s;
+}
+.movieRow--item img:hover{
+  transform: scale(1);
+}
 </style>
 
 </head>
@@ -91,6 +118,7 @@ body h1 {
 			</li>
 		</ul>
 	</nav>
+
 	<!--<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<div class="sidebar">
 			<nav class="mt-2">
@@ -113,38 +141,23 @@ body h1 {
 					<div class="card-body table-responsive p-0" style="height: 790px;">
 						<table class="table table-head-fixed text-nowrap"
 							id="content-tabble">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>ORIGINAL TITLE</th>
-									<th>TITLE</th>
-									<th>ORGIRINAL LANGUAGE</th>
-									<th>OVERVIEW</th>
-									<th>POSTER PATH</th>
-									<th>RELEASE DATE</th>
-									<th>MEDIA TYPE</th>
-									<th>VOTE AVARENGE</th>
 
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								for (int i = 0; i < lista.size(); i++) {
-								%>
-								<tr class="active-row">
-									<td><%=lista.get(i).getId()%></td>
-									<td><%=lista.get(i).getRank()%></td>
-									<td><%=lista.get(i).getTitle()%></td>
-									<td><%=lista.get(i).getFullTitle()%></td>
-									<td><%=lista.get(i).getYear()%></td>
-									<td><%=lista.get(i).getImage()%></td>
-									<td><%=lista.get(i).getCrew()%></td>
-									<td><%=lista.get(i).getImDbRating()%></td>
-									<td><%=lista.get(i).getImDbRatingCount()%></td>
-								</tr>
-								<%
-								}
-								%>
+							<%
+							for (int i = 0; i < listaRecomendados.size(); i++) {
+							%>
+							<div>
+								<div className="movieRow--listarea">
+									<div className="movieRow--list">
+										<div className="movieRow--item">
+											<img
+												src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<%
+							}
+							%>
 
 							</tbody>
 						</table>

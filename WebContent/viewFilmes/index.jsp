@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="entity.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%
+ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) request.getAttribute("listaRecomendados");
+%>
+
+    
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -28,7 +35,7 @@
              <span class="icon-bar"></span>
            </button>
 
-          <a href="index.html" class="navbar-brand">
+          <a href="index.jsp" class="navbar-brand">
             <span class="img-logo">Spotify</span>
           </a>
 
@@ -54,125 +61,66 @@
       <div class="texto-capa">
         <h3>Bem-Vindo(a) <br>
           Milhões de Filmes, Séries e Pessoas para Descobrir. Explore já.</h3>
-          <!-- <a href="" class="btn btn-custom btn-roxo btn-lg">Aproveite o Spotify free</a>
-        <a href="" class="btn btn-custom btn-branco btn-lg">Obter Spotify premium</a> -->
+           <a href="dashboard.jsp" class="btn btn-custom btn-roxo btn-lg">Gerar Dashbord</a>
+        
         
       </div>
     </div>
 
-    <!--conteudo-->
+    <!--Scroll filmes-->
     <section id="servicos">
       <div class="container">
         <div class="row" >
           
           <div class="col-md-6">
             <div class="row albuns">
-<!--                <div class="col-md-6"> -->
-<!--                 <img src="imagens/img2.jpg" class="img-responsive"> -->
-<!--               </div> -->
+               <div class="col-md-6">
+                <div class="carousel">
+                  <div class="carouselbox">
+                    <!-- Random Data will come here  -->
+                  </div>
+            
+                  <a class="switchLeft sliderButton" onclick="sliderScrollLeft()">
+                  	<img alt="" src="imagens/less_than_30px.png">
+                  </a>
+                  
+                  <div class="card-body table-responsive p-0" style="height: 790px;">
+						<table class="table table-head-fixed text-nowrap"
+							id="content-tabble">
 
-<!--               <div class="col-md-6"> -->
-<!--                 <img src="imagens/img4.jpg" class="img-responsive"> -->
-<!--               </div> -->
-
-<!--             </div>  -->
-              
-
-            <!-- <div class="row albuns">
-
-              <div class="col-md-6" ">
-                <img src="imagens/img3.jpg" class="img-responsive">
+							<%
+							for (int i = 0; i < listaRecomendados.size(); i++) {
+							%>
+							<div>
+								<div class="movieRow--listarea">
+									<div class="movieRow--list">
+										<div class="movieRow--item">
+											<img
+												src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<%
+							}
+							%>
+						</table>
+					</div>
+                  
+                  <a class="switchRight sliderButton" onclick="sliderScrollRight()">
+                  	<img alt="" src="imagens/iphone3.png">
+                  </a>
+                </div>
+                
               </div>
 
-              <div class="col-md-6">
-                <img src="imagens/img1.jpg" class="img-responsive">
-              </div>
-
-            </div>
-
-          </div> -->
-            
-
-
-          <!--<div class="col-md-6">
-            <h2>Oque é o Spotify?</h2>
-
-            <h3>Músicas</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis, dolor nec accumsan ullamcorper, purus sem vulputate odio, euismod rutrum leo arcu at enim. Phasellus faucibus nulla congue porta hendrerit</p>
-
-            <h3>Playlists</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis, dolor nec accumsan ullamcorper, purus sem vulputate odio, euismod rutrum leo arcu at enim. Phasellus faucibus nulla congue porta hendrerit</p>
-
-            <h3>Lançamentos</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis, dolor nec accumsan ullamcorper, purus sem vulputate odio, euismod rutrum leo arcu at enim. Phasellus faucibus nulla congue porta hendrerit</p>
-
-            
-          </div>-->
-          
-
+            </div> 
         </div>
       </div>
     </section>
 
       <!--recursos-->
-    <section id="recursos">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-md-4" > 
-           <div id="chart"></div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { packages: [ 'corechart' ] })
-        google.charts.setOnLoadCallback(drawChart)
-        
-
-        function drawChart() {
-            const container = document.querySelector('#chart')
-            const data = new google.visualization.arrayToDataTable([
-                [ 'Filmes', 'Ki' ],
-                [ 'SONIC: O FILME', 10000 ],
-                [ 'BAD BOYS PARA SEMPRE', 9000 ],
-                [ 'AVES DE RAPINA', 8000 ],
-                [ 'O HOMEM INVISÍVEL', 5000 ],
-                [ 'JOIAS BRUTAS', 2000 ]
-            ])
-            const options = {
-                title: 'Filmes mais pesquisados de 2020.',
-                height: 400,
-                width: 720
-            }
-
-            // const chart = new google.visualization.ColumnChart(container)
-            // const chart = new google.visualization.BarChart(container)
-            // const chart = new google.visualization.LineChart(container)
-            const chart = new google.visualization.PieChart(container)
-            chart.draw(data, options)
-        }
-    </script>
-          </div>
-
-          <!--img recursos-->
-          <div class="col-md-8">
-             <!-- <div class="row rotacionar">
-
-              <div class="col-md-4" ">
-                <img src="imagens/iphone1.png" class="img-responsive">
-              </div>
-
-              <div class="col-md-4">
-                <img src="imagens/iphone2.png" class="img-responsive">
-              </div>--> 
-           
-
-    
-
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
+   
 
     <!--Rodapé-->
     <footer id="rodape">
@@ -215,16 +163,12 @@
       </div>
     </footer>
 
-
-
-
-
-    
-
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
      <!-- Include all compiled plugins (below), or include individual files as needed -->
      <script src="bootstrap/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>

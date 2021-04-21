@@ -5,10 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,16 +23,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import dao.FilmeDao;
-import entity.Filme;
+import dao.TmdbRecomendadosDao;
+import entity.TmdbRecomendados;
 
-@WebServlet(name = "filmez", urlPatterns = "/viewFilmes/filmez")
-public class FilmeServlet extends HttpServlet {
+@WebServlet(name = "recomendados", urlPatterns = "/viewFilmes/recomendados")
+public class TmdbServletFilmes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private FilmeDao filmeDao;
+	private TmdbRecomendadosDao recDao;
 
-	public FilmeServlet() {
-		this.filmeDao = new FilmeDao();
+	public TmdbServletFilmes() {
+		this.recDao = new TmdbRecomendadosDao();
 	}
 
 //  private static HttpURLConnection connection;
@@ -42,16 +40,20 @@ public class FilmeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Filme> lista = filmeDao.selectAllFilmes();
-		request.setAttribute("listaFilmes", lista);
+		ArrayList<TmdbRecomendados> lista = recDao.selectAllrecs();
+//		response.getWriter().print(lista);
+		request.setAttribute("listaRecomendados", lista);
+		
+		
 
-		RequestDispatcher rd = request.getRequestDispatcher("/viewFilmes/exibeFilmes.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/viewFilmes/index.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String sURL = "https://imdb-api.com/en/API/Top250Movies/k_jw6z7bdy";
+		
+		String sURL = "https://api.themoviedb.org/3/trending/all/week?language=pt-BR&api_key=2e0ae99af7d2c9c2ae236f403d6c111c";
 
 		// Connect to the URL using java's native library
 		URL url = new URL(sURL);
@@ -64,28 +66,40 @@ public class FilmeServlet extends HttpServlet {
 		JsonObject rootobj = root.getAsJsonObject();
 		JsonElement code = rootobj;
 		Gson gson = new GsonBuilder().create();
-		JsonArray jsonArray = rootobj.getAsJsonArray("items");
-		Filme[] arrayFilmes = gson.fromJson(jsonArray, Filme[].class);
-		response.getWriter().append(Arrays.asList(arrayFilmes) + "");
+		JsonArray jsonArray = rootobj.getAsJsonArray("results");
 
-		ArrayList<Filme> listaVerifica = filmeDao.selectAllFilmes();
-		List<Filme> listaFilmes = new ArrayList<Filme>();
+		//Array de filmes convertido para Array
+		TmdbRecomendados[] arrayFilmes = gson.fromJson(jsonArray, TmdbRecomendados[].class);
+		response.getWriter().append( rootobj + "");
+
+		
+		//Lista para comparar cadastros no banco
+		ArrayList<TmdbRecomendados> listaVerifica = recDao.selectAllrecs();
+		
+		List<TmdbRecomendados> listaFilmes = new ArrayList<TmdbRecomendados>();
+		
+		
 		for (int i = 0; i < arrayFilmes.length; i++) {
-			Filme filmes = new Filme();
-			filmes.setId(arrayFilmes[i].getId());
-			filmes.setRank(arrayFilmes[i].getRank());
-			filmes.setTitle(arrayFilmes[i].getTitle());
-			filmes.setFullTitle(arrayFilmes[i].getFullTitle());
-			filmes.setYear(arrayFilmes[i].getYear());
-			filmes.setImage(arrayFilmes[i].getImage());
-			filmes.setCrew(arrayFilmes[i].getCrew());
-			filmes.setImDbRating(arrayFilmes[i].getImDbRating());
-			filmes.setImDbRatingCount(arrayFilmes[i].getImDbRatingCount());
+			TmdbRecomendados rec = new TmdbRecomendados();
+			rec.setId(arrayFilmes[i].getId());
+//			rec.setGenre_ids(arrayFilmes[i].getGenre_ids());
+			rec.setMedia_type(arrayFilmes[i].getMedia_type());
+			rec.setOriginal_language(arrayFilmes[i].getOriginal_language());
+			if(arrayFilmes[i].getOriginal_title() == null) {
+				rec.setOriginal_title(arrayFilmes[i].getOriginal_name());
+			}
+			rec.setOriginal_title(arrayFilmes[i].getOriginal_title());
+			rec.setOverview(arrayFilmes[i].getOverview());
+			rec.setPoster_path(arrayFilmes[i].getPoster_path());
+			rec.setRelease_date(arrayFilmes[i].getRelease_date());
+			rec.setVote_average(arrayFilmes[i].getVote_average());
+			rec.setOriginal_name(arrayFilmes[i].getOriginal_name());
 
 			boolean x = true;
-			listaFilmes.add(filmes);
-			for (Filme filme : listaVerifica) {
-				if (filme.getId().equals(arrayFilmes[i].getId())) {
+			listaFilmes.add(rec);
+			recDao.Addrecs(rec);
+			for (TmdbRecomendados filmeRec: listaFilmes) {
+				if(filmeRec.getId().equals(arrayFilmes[i].getId())){
 					System.out.println("Encontrei");
 					x = false;
 				}
@@ -93,11 +107,11 @@ public class FilmeServlet extends HttpServlet {
 			System.out.println(x);
 			if (x == true) {
 				System.out.println("Salvando...");
-				filmeDao.AddFilmes(filmes);
 			}
 
-		}
 
+		}
+		
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
