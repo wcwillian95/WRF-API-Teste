@@ -7,28 +7,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connection.ConexaoDao;
-import entity.Filme;
+import entity.Genero;
 
-public class FilmeDao extends ConexaoDao {
+public class GenreDao extends ConexaoDao {
 
-	private static final String INSERT = "INSERT INTO FILME (varcode,varrank,title,fullTitle,varyear,image,crew,imDbRating,imDbRatingCount) VALUES (?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT = "SELECT * FROM FILME";
+	private static final String INSERT = "INSERT INTO GENRE (id ,name) VALUES (?,?)";
+	private static final String SELECT = "SELECT * FROM GENRE";
 	private static final String SELECTCODE = "SELECT * FROM FILME where CODE = \"USD\" ORDER BY ID DESC LIMIT 2";// "SELECT
 
 	// Salva no banco
-	public void AddFilmes(Filme filme) {
+	public void AddFilmes(Genero genero) {
 
 		try (Connection connection = this.conectar(); PreparedStatement pst = connection.prepareStatement(INSERT);) {
 
-			pst.setString(1, filme.getId());
-			pst.setString(2, filme.getRank());
-			pst.setString(3, filme.getTitle());
-			pst.setString(4, filme.getFullTitle());
-			pst.setString(5, filme.getYear());
-			pst.setString(6, filme.getImage());
-			pst.setString(7, filme.getCrew());
-			pst.setString(8, filme.getImDbRating());
-			pst.setString(9, filme.getImDbRatingCount());
+			pst.setInt(1, genero.getId());
+			pst.setString(2, genero.getName());
 
 			pst.executeUpdate();
 
@@ -41,33 +34,26 @@ public class FilmeDao extends ConexaoDao {
 
 	}
 
-	public ArrayList<Filme> selectAllFilmes() {
+	public ArrayList<Genero> selectAllGenres() {
 
-		ArrayList<Filme> listFilme = new ArrayList<Filme>();
+		ArrayList<Genero> listGenre = new ArrayList<Genero>();
 		try (Connection connection = this.conectar(); PreparedStatement pst = connection.prepareStatement(SELECT);) {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
 
-				Filme filme = new Filme();
-				filme.setId(rs.getString("varcode"));
-				filme.setRank(rs.getString("varrank"));
-				filme.setTitle(rs.getString("title"));
-				filme.setFullTitle(rs.getString("fullTitle"));
-				filme.setYear(rs.getString("varyear"));
-				filme.setImage(rs.getString("image"));
-				filme.setCrew(rs.getString("crew"));
-				filme.setImDbRating(rs.getString("imDbRating"));
-				filme.setImDbRatingCount(rs.getString("imDbRatingCount"));
+				Genero genero = new Genero();
+				genero.setId(rs.getInt("id"));
+				genero.setName(rs.getString("name"));
 
-				listFilme.add(filme);
+				listGenre.add(genero);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return listFilme;
+		return listGenre;
 
 	}
 

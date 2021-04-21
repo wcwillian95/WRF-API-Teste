@@ -25,16 +25,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import dao.FilmeDao;
-import entity.Filme;
+import dao.GenreDao;
+import entity.Genero;
 
-@WebServlet(name = "filmez", urlPatterns = "/viewFilmes/filmez")
-public class FilmeServlet extends HttpServlet {
+@WebServlet(name = "generos", urlPatterns = "/viewFilmes/generos")
+public class GenreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private FilmeDao filmeDao;
+	private GenreDao genreDao;
 
-	public FilmeServlet() {
-		this.filmeDao = new FilmeDao();
+	public GenreServlet() {
+		this.genreDao = new GenreDao();
 	}
 
 //  private static HttpURLConnection connection;
@@ -42,8 +42,9 @@ public class FilmeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Filme> lista = filmeDao.selectAllFilmes();
-		request.setAttribute("listaFilmes", lista);
+		ArrayList<Genero> lista = genreDao.selectAllGenres();
+//		response.getWriter().print(lista);
+		request.setAttribute("listaGenres", lista);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/viewFilmes/exibeFilmes.jsp");
 		rd.forward(request, response);
@@ -51,7 +52,7 @@ public class FilmeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String sURL = "https://imdb-api.com/en/API/Top250Movies/k_jw6z7bdy";
+		String sURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=2e0ae99af7d2c9c2ae236f403d6c111c&language=en-US";
 
 		// Connect to the URL using java's native library
 		URL url = new URL(sURL);
@@ -64,40 +65,29 @@ public class FilmeServlet extends HttpServlet {
 		JsonObject rootobj = root.getAsJsonObject();
 		JsonElement code = rootobj;
 		Gson gson = new GsonBuilder().create();
-		JsonArray jsonArray = rootobj.getAsJsonArray("items");
-		Filme[] arrayFilmes = gson.fromJson(jsonArray, Filme[].class);
-		response.getWriter().append(Arrays.asList(arrayFilmes) + "");
+		JsonArray jsonArray = rootobj.getAsJsonArray("genres");
 
-		ArrayList<Filme> listaVerifica = filmeDao.selectAllFilmes();
-		List<Filme> listaFilmes = new ArrayList<Filme>();
-		for (int i = 0; i < arrayFilmes.length; i++) {
-			Filme filmes = new Filme();
-			filmes.setId(arrayFilmes[i].getId());
-			filmes.setRank(arrayFilmes[i].getRank());
-			filmes.setTitle(arrayFilmes[i].getTitle());
-			filmes.setFullTitle(arrayFilmes[i].getFullTitle());
-			filmes.setYear(arrayFilmes[i].getYear());
-			filmes.setImage(arrayFilmes[i].getImage());
-			filmes.setCrew(arrayFilmes[i].getCrew());
-			filmes.setImDbRating(arrayFilmes[i].getImDbRating());
-			filmes.setImDbRatingCount(arrayFilmes[i].getImDbRatingCount());
+		Genero[] arrayGeneros = gson.fromJson(jsonArray, Genero[].class);
+		response.getWriter().append(Arrays.asList(arrayGeneros) + "");
 
-			boolean x = true;
-			listaFilmes.add(filmes);
-			for (Filme filme : listaVerifica) {
-				if (filme.getId().equals(arrayFilmes[i].getId())) {
-					System.out.println("Encontrei");
-					x = false;
-				}
-			}
-			System.out.println(x);
-			if (x == true) {
-				System.out.println("Salvando...");
-				filmeDao.AddFilmes(filmes);
-			}
+		// Convertendo um objeto Java para JSON e retorna uma String JSON formatada.
+//		String JsonConvertido = gson.toJson(code);
+//
+//		JSONArray jsonObjectFilmes = new JSONArray(JsonConvertido);
+//
+		ArrayList<Genero> listaVerifica = genreDao.selectAllGenres();
+		List<Genero> listaGeneros = new ArrayList<Genero>();
+		for (int i = 0; i < arrayGeneros.length; i++) {
+			Genero generos = new Genero();
+			generos.setId(arrayGeneros[i].getId());
+			generos.setName(arrayGeneros[i].getName());
+
+			listaGeneros.add(generos);
+			genreDao.AddFilmes(generos);
+
 
 		}
-
+		System.out.println(listaGeneros);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
