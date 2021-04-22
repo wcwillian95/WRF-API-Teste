@@ -18,8 +18,9 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <title>WRC FILMES</title>
-<link rel="icon" href="imagens/favicon.png">
+<link rel="icon" href="imagens/cinema_64px.png">
 </head>
 <body>
 
@@ -35,7 +36,8 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 						class="icon-bar"></span>
 				</button>
 
-				<a href="index.jsp" class="navbar-brand"> <span class="img-logo">Spotify</span>
+				<a href="recomendados" class="navbar-brand"> <span
+					class="img-logo">WRC Filmes</span>
 				</a>
 
 			</div>
@@ -60,13 +62,17 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 
 	<div class="capa">
 		<div class="texto-capa">
-			<h3>
-				Bem-Vindo(a) <br> Milhões de Filmes, Séries e Pessoas para
-				Descobrir. Explore já.
-			</h3>
+			<h2>Bem-Vindo(a)</h2>
+			<h3>Milhões de Filmes, Séries e Pessoas para Descobrir. Explore
+				já.</h3>
 			<a href="dashboard.jsp" class="btn btn-custom btn-roxo btn-lg">Gerar
 				Dashbord</a>
-
+			<div class="wrapper">
+				<input type="text" class="input" placeholder="Busca">
+				<div class="searchbtn">
+					<i class="fas fa-search"></i>
+				</div>
+			</div>
 
 		</div>
 	</div>
@@ -79,6 +85,7 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 					<div class="row albuns">
 						<div class="col-md-6">
 							<div class="carousel">
+							<h3>Recomendados para Você</h3>
 								<div class="movieRow--left" onClick="sliderScrollLeft()">
 									<img src="imagens/less_than_30px.png" />
 								</div>
@@ -90,7 +97,8 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 										<%
 										for (int i = 0; i < listaRecomendados.size(); i++) {
 										%>
-											<img class="slider-img" src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>" />
+										<img class="slider-img"
+											src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>" />
 										<%
 										}
 										%>
