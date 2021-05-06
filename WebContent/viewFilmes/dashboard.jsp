@@ -72,11 +72,11 @@
             const container = document.querySelector('#chart')
             const data = new google.visualization.arrayToDataTable([
                 [ 'Notas', 'Ki' ],
-                [ 'De 5 até 6,0', num5 ],
-                [ 'De 6,1 até 6,5', 3 ],
-                [ 'De 6,6 até 7,0 ', 2 ],
-                [ 'De 7,1 até 8,0', 6 ],
-                [ 'De 8,1 até max', 4 ]
+                [ 'De 5.0 até 5.9', num5 ],
+                [ 'De 6.0 até 6,9', 2 ],
+                [ 'De 7.0 até 7,9 ', 7 ],
+                [ 'De 8.0 até 8,9', 9 ],
+                [ 'De 9.0 até max', 0 ]
             ])
             const options = {
                 title: ' FILMES MAIS BEM AVALIADOS PELO IMDB POR NOTAS:',
