@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%
 ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) request.getAttribute("listaRecomendados");
+ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.getAttribute("listaEmAlta");
 %>
 
 
@@ -18,7 +19,8 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <title>WRC FILMES</title>
 <link rel="icon" href="imagens/cinema_64px.png">
 </head>
@@ -85,7 +87,7 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 					<div class="row albuns">
 						<div class="col-md-6">
 							<div class="carousel">
-							<h3>Recomendados para Você</h3>
+								<h3>Recomendados para Você</h3>
 								<div class="movieRow--left" onClick="sliderScrollLeft()">
 									<img src="imagens/less_than_30px.png" />
 								</div>
@@ -98,7 +100,106 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 										for (int i = 0; i < listaRecomendados.size(); i++) {
 										%>
 										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>" />
+											src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>"
+											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
+										<%
+										}
+										%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row albuns">
+						<div class="col-md-6">
+							<div class="carousel">
+								<h3>Em Alta</h3>
+								<div class="movieRow--left" onClick="sliderScrollLeft2()">
+									<img src="imagens/less_than_30px.png" />
+								</div>
+								<div class="movieRow--right" onClick="sliderScrollRight2()">
+									<img alt="" src="imagens/iphone3.png">
+								</div>
+								<div class="movieRow--listarea">
+									<div class="carouselbox">
+										<div class="carouselbox2">
+											<%
+											for (int i = 0; i < listaemAlta.size(); i++) {
+											%>
+											<img class="slider-img"
+												src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
+												title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
+											<%
+											}
+											%>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row albuns">
+						<div class="col-md-6">
+							<div class="carousel">
+								<h3>Originais Netflix</h3>
+								<div class="movieRow--left" onClick="sliderScrollLeft2()">
+									<img src="imagens/less_than_30px.png" />
+								</div>
+								<div class="movieRow--right" onClick="sliderScrollRight2()">
+									<img alt="" src="imagens/iphone3.png">
+								</div>
+								<div class="movieRow--listarea">
+									<div class="carouselbox">
+										<%
+										for (int i = 0; i < listaemAlta.size(); i++) {
+										%>
+										<img class="slider-img"
+											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
+											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
+										<%
+										}
+										%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row albuns">
+						<div class="col-md-6">
+							<div class="carousel">
+								<h3>Ação</h3>
+								<div class="movieRow--left" onClick="sliderScrollLeft2()">
+									<img src="imagens/less_than_30px.png" />
+								</div>
+								<div class="movieRow--right" onClick="sliderScrollRight2()">
+									<img alt="" src="imagens/iphone3.png">
+								</div>
+								<div class="movieRow--listarea">
+									<div class="carouselbox">
+										<%
+										for (int i = 0; i < listaemAlta.size(); i++) {
+										%>
+										<img class="slider-img"
+											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
+											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
 										<%
 										}
 										%>
@@ -164,7 +265,7 @@ ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) re
 	</footer>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="index.js"></script>
+	<script type="text/javascript" src="javascript/index.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
