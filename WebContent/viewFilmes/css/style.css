@@ -1,0 +1,168 @@
+
+  
+    html {
+      --primaryColor: #1b1e20;
+      --primaryColorContrast: #ffffff;
+    }
+
+    /*ano do lado do titulo*/
+    section.inner_content div.title h2 span.release_date {
+      opacity: 0.8;
+      font-weight: 400;
+    }    
+
+    a {
+    color: #000;
+    text-decoration: none;
+    font-weight: normal;
+    }/*ano do lado do titulo*/
+
+    div.header {
+      background: linear-gradient(to bottom right, rgba(10.59%, 11.76%, 12.55%, 1.00), rgba(10.59%, 11.76%, 12.55%, 0.84));
+    }
+
+    div.column_wrapper div.settings_panel h3 {
+      color: var(--primaryColorContrast);
+    }
+
+    div.settings_panel h3.background_color {
+      background-color: var(--primaryColor);
+    }
+
+    section.inner_content a, section.media_panel div.menu ul li.active a {
+      color: #000;
+    }
+
+    section.inner_content a:hover {
+      color: rgba(0,0,0,0.5);
+    }
+
+    section.media_panel div.menu ul li.active {
+      border-bottom-color: #000000;
+    }
+
+    #shortcut_bar_scroller.scroller_wrap, div.single_column_wrapper {
+      border-bottom: 1px solid var(--primaryColor);
+    }
+
+    
+      section.inner_content div.header div.single_column *, section.inner_content div.header div.single_column a {
+        color: #fff;
+      }
+
+      section.inner_content div.header div.single_column a:hover {
+        color: rgba(255,255,255,0.7);
+      }
+
+      section.inner_content div.header div.single_column div.facts span.certification {
+        border: 1px solid rgba(255,255,255,0.6);
+        color: rgba(255,255,255,0.6);
+      }
+      section div.header div.single_column {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    section div.header.first div.single_column {
+      padding-top: 30px;
+      padding-bottom: 30px;
+  }
+
+      section.inner_content section.header div.facts span+span:before {
+        font-size: 1.1em;
+        line-height: 1;
+        content: '\2022';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 7px;
+        display: inline-flex;
+        align-content: center;
+        align-items: center;
+        z-index: -1;
+    }
+    section.inner_content section.header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      align-content: center;
+      box-sizing: border-box;
+      padding-left: 40px;
+  }
+    section.inner_content section.images>div.poster_wrapper {
+      border-width: 0px;
+      min-width: 300px;
+      width: 300px;
+      height: 450px;
+      overflow: hidden;
+      border-radius: var(--imageBorderRadius);
+  }
+
+      p.new_button.rounded a span, section.inner_content section.header ul.actions li.video span, div.column_wrapper div.settings_panel h3 span.glyphicons_v2, section.inner_content section.header div.trailer a span {
+        filter: invert(1);
+      }
+      section.inner_content section.images {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    p.new_button.rounded, section.content_score div.content_score div, div.leaderboard div.histogram div.bar span {
+      border-color: var(--primaryColor);
+      background-color: var(--primaryColor);
+      color: var(--primaryColorContrast);
+    }
+
+    p.new_button.rounded a, section.content_score div.content_score div p {
+      color: var(--primaryColorContrast);
+    }
+
+    
+      div.header.large.first {
+        border-bottom: 1px solid var(--primaryColor);
+        background-position: right -200px top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg');
+      }
+    
+
+    
+      section.inner_content div.custom_bg {
+        background-image: linear-gradient(to right, rgba(10.59%, 11.76%, 12.55%, 1.00) 150px, rgba(10.59%, 11.76%, 12.55%, 0.84) 100%);
+      }
+      div.custom_bg {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Auto Actions*/
+    section.inner_content section.header ul.actions {
+      margin-bottom: 20px;
+      width: 100%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+  }
+  ul {
+    list-style-type: none;
+}
+section.inner_content section.header ul.actions li.chart {
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 68px;
+}
+section.inner_content section.header ul.actions li {
+  margin-right: 20px;
+}
+section.inner_content section.header ul.actions li.chart div.text {
+  font-weight: 700;
+  margin-left: 8px;
+  white-space: pre-line;
+} /* Auto Actions*/
+  

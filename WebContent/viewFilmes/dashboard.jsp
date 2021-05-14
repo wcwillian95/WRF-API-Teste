@@ -71,7 +71,7 @@
         function drawChart() {
             const container = document.querySelector('#chart')
             const data = new google.visualization.arrayToDataTable([
-                [ 'Notas', 'Ki' ],
+                [ 'Notas', 'Filmes' ],
                 [ 'De 5.0 até 5.9', num5 ],
                 [ 'De 6.0 até 6,9', 2 ],
                 [ 'De 7.0 até 7,9 ', 7 ],
@@ -83,7 +83,7 @@
                 height: 400,
                 width: 720
             }
-            const chart = new google.visualization.PieChart(container)
+            const chart = new google.visualization.ColumnChart(container)
             chart.draw(data, options)
         }
 
@@ -94,39 +94,36 @@
 
 <br>
  
-  <div id="chart2"></div>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-google.charts.load('current', { packages: [ 'corechart' ] })
-google.charts.setOnLoadCallback(drawChart)
 
-function drawChart() {
-   const container = document.querySelector('#chart2')
-   const data = new google.visualization.arrayToDataTable([
-       [ 'Character', 'Bilheteria', ],
-       [ 'Avatar', 2846089541 ],
-       [ 'Avengers: Endgame', 2797501328 ],
-       [ 'Titanic', 2201647264 ],
-       [ 'Star Wars: Episode VII', 2068455677 ],
-       [ 'Avengers: Infinity War', 2048359754 ]
-   ])
-   const options = {
-       title: 'TOP 5 FILMES COM MAIORES BILHETERIAS $$$  DE TODOS OS TEMPOS:',
-       height: 400,
-       width: 720
-   }
-   const chart = new google.visualization.ColumnChart(container)
-   chart.draw(data, options)
-}
+<!--Dashbord 3-->
+          <div id="chart2"></div>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+            google.charts.load('current', { packages: [ 'corechart' ] })
+            google.charts.setOnLoadCallback(drawChart)
 
-
-
-
-
-
-</script>
-
-
+            function drawChart() {
+              const container = document.querySelector('#chart2')
+              const data = new google.visualization.arrayToDataTable([
+                  [ 'Character', 'Bilheteria', ],
+                  [ 'Avatar', 2846089541 ],
+                  [ 'Avengers: Endgame', 2797501328 ],
+                  [ 'Titanic', 2201647264 ],
+                  [ 'Star Wars: Episode VII', 2068455677 ],
+                  [ 'Avengers: Infinity War', 2048359754 ]
+              ])
+              const options = {
+                  title: 'TOP 5 FILMES COM MAIORES BILHETERIAS $$$  DE TODOS OS TEMPOS:',
+                  height: 400,
+                  width: 720,
+                  is3D: true
+              }
+              const chart = new google.visualization.PieChart(container)
+              chart.draw(data, options)
+            }
+            </script>
+            <br>
+            
           </div>
             </div>
           </div>

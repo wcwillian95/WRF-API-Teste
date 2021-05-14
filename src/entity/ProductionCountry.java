@@ -1,13 +1,13 @@
 package entity;
 
-public class Genero {
-	private int id;
+public class ProductionCountry {
+	private String iso;
 	private String name;
-	public int getId() {
-		return id;
+	public String getIso() {
+		return iso;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIso(String iso) {
+		this.iso = iso;
 	}
 	public String getName() {
 		return name;
@@ -19,7 +19,7 @@ public class Genero {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((iso == null) ? 0 : iso.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -31,8 +31,11 @@ public class Genero {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Genero other = (Genero) obj;
-		if (id != other.id)
+		ProductionCountry other = (ProductionCountry) obj;
+		if (iso == null) {
+			if (other.iso != null)
+				return false;
+		} else if (!iso.equals(other.iso))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -43,7 +46,8 @@ public class Genero {
 	}
 	@Override
 	public String toString() {
-		return "Genero [id=" + id + ", name=" + name + "]";
+		return "ProductionCountry [iso=" + iso + ", name=" + name + "]";
 	}
+	
 	
 }

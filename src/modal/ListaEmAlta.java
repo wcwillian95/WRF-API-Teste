@@ -1,12 +1,10 @@
 package modal;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import entity.Filme;
 import entity.TmdbRecomendados;
 
-public class ListaFilmes {
+public class ListaEmAlta {
 	ArrayList<TmdbRecomendados> listFilme = new ArrayList<TmdbRecomendados>();
 
 	public void AddListaFilmes(TmdbRecomendados rec) {
