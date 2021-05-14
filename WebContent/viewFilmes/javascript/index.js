@@ -1,5 +1,6 @@
 const sliders = document.querySelector(".carouselbox");
-const sliders2 = document.querySelector(".carouselbox2");
+const sliders2 = document.getElementById("teste1");
+const sliders3 = document.getElementById("teste2");
 var scrollPerClick;
 var ImagePadding = 20;
 
@@ -9,7 +10,7 @@ var ImagePadding = 20;
 var scrollAmount = 0;
 
 function sliderScrollLeft() {
-	console.log(scrollPerClick)
+    console.log(scrollPerClick)
 
   sliders.scrollTo({
     top: 0,
@@ -34,7 +35,7 @@ function sliderScrollRight() {
   }
 }
 function sliderScrollLeft2() {
-	console.log(scrollPerClick)
+    console.log(scrollPerClick)
 
   sliders2.scrollTo({
     top: 0,
@@ -51,6 +52,31 @@ function sliderScrollLeft2() {
 function sliderScrollRight2() {
   if (scrollAmount <= sliders2.scrollWidth - sliders2.clientWidth) {
     sliders2.scrollTo({
+      top: 0,
+      left: (scrollAmount += scrollPerClick),
+      behavior: "smooth",
+    });
+
+  }
+}
+function sliderScrollLeft3() {
+    console.log(scrollPerClick)
+
+  sliders3.scrollTo({
+    top: 0,
+    left: (scrollAmount -= scrollPerClick),
+    behavior: "smooth",
+  });
+
+  if (scrollAmount < 0) {
+    scrollAmount = 0;
+  }
+
+}
+
+function sliderScrollRight3() {
+  if (scrollAmount <= sliders3.scrollWidth - sliders3.clientWidth) {
+    sliders3.scrollTo({
       top: 0,
       left: (scrollAmount += scrollPerClick),
       behavior: "smooth",

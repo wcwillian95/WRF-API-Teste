@@ -5,6 +5,7 @@
 <%
 ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) request.getAttribute("listaRecomendados");
 ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.getAttribute("listaEmAlta");
+ArrayList<TmdbRecomendados> listaOriginais = (ArrayList<TmdbRecomendados>) request.getAttribute("listaOriginais");
 %>
 
 
@@ -64,17 +65,26 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 
 	<div class="capa">
 		<div class="texto-capa">
+			<br> <br> <br> <br>
 			<h2>Bem-Vindo(a)</h2>
 			<h3>Milhões de Filmes, Séries e Pessoas para Descobrir. Explore
 				já.</h3>
-			<a href="dashboard.jsp" class="btn btn-custom btn-roxo btn-lg">Gerar
-				Dashbord</a>
-			<div class="wrapper">
-				<input type="text" class="input" placeholder="Busca">
-				<div class="searchbtn">
-					<i class="fas fa-search"></i>
+			<br> <a href="dashboard.jsp"
+				class="btn btn-custom btn-roxo btn-lg">Gerar Dashbord</a> <br>
+			<br> <br> <br>
+
+			<form action="search" method="get">
+				<div class="wrapper">
+					<input type="text" class="input" name="search" placeholder="Busca">
+					<div>
+						<button style="height: 50px" id="searchButton" type="submit"
+							class="btn btn-success">Buscar</button>
+					</div>
+
 				</div>
-			</div>
+			</form>
+
+
 
 		</div>
 	</div>
@@ -105,6 +115,7 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 										<%
 										}
 										%>
+
 									</div>
 								</div>
 							</div>
@@ -119,7 +130,7 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 					<div class="row albuns">
 						<div class="col-md-6">
 							<div class="carousel">
-								<h3>Em Alta</h3>
+								<h3>Populares</h3>
 								<div class="movieRow--left" onClick="sliderScrollLeft2()">
 									<img src="imagens/less_than_30px.png" />
 								</div>
@@ -127,18 +138,16 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 									<img alt="" src="imagens/iphone3.png">
 								</div>
 								<div class="movieRow--listarea">
-									<div class="carouselbox">
-										<div class="carouselbox2">
-											<%
-											for (int i = 0; i < listaemAlta.size(); i++) {
-											%>
-											<img class="slider-img"
-												src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
-												title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
-											<%
-											}
-											%>
-										</div>
+									<div id="teste1" class="carouselbox">
+										<%
+										for (int i = 0; i < listaemAlta.size(); i++) {
+										%>
+										<img class="slider-img"
+											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
+											title="<%=listaemAlta.get(i).getOriginal_name()%>" />
+										<%
+										}
+										%>
 									</div>
 								</div>
 							</div>
@@ -154,52 +163,20 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 						<div class="col-md-6">
 							<div class="carousel">
 								<h3>Originais Netflix</h3>
-								<div class="movieRow--left" onClick="sliderScrollLeft2()">
+								<div class="movieRow--left" onClick="sliderScrollLeft3()">
 									<img src="imagens/less_than_30px.png" />
 								</div>
-								<div class="movieRow--right" onClick="sliderScrollRight2()">
+								<div class="movieRow--right" onClick="sliderScrollRight3()">
 									<img alt="" src="imagens/iphone3.png">
 								</div>
 								<div class="movieRow--listarea">
-									<div class="carouselbox">
+									<div id="teste2" class="carouselbox">
 										<%
-										for (int i = 0; i < listaemAlta.size(); i++) {
+										for (int i = 0; i < listaOriginais.size(); i++) {
 										%>
 										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
-											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
-										<%
-										}
-										%>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="row albuns">
-						<div class="col-md-6">
-							<div class="carousel">
-								<h3>Ação</h3>
-								<div class="movieRow--left" onClick="sliderScrollLeft2()">
-									<img src="imagens/less_than_30px.png" />
-								</div>
-								<div class="movieRow--right" onClick="sliderScrollRight2()">
-									<img alt="" src="imagens/iphone3.png">
-								</div>
-								<div class="movieRow--listarea">
-									<div class="carouselbox">
-										<%
-										for (int i = 0; i < listaemAlta.size(); i++) {
-										%>
-										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
-											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
+											src="https://image.tmdb.org/t/p/w300<%=listaOriginais.get(i).getPoster_path()%>"
+											title="<%=listaOriginais.get(i).getOriginal_name()%>" />
 										<%
 										}
 										%>
@@ -213,13 +190,6 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 		</div>
 	</section>
 
-
-
-
-
-	<!--recursos-->
-
-
 	<!--Rodapé-->
 	<footer id="rodape">
 		<div class="container">
@@ -227,8 +197,6 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 				<div class="col-md-2">
 					<span class="img-logo">Spotify</span>
 				</div>
-
-
 
 				<div class="col-md-2">
 					<h4>Trabalho Realizado Por:</h4>
@@ -264,8 +232,8 @@ ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.
 		</div>
 	</footer>
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script type="text/javascript" src="javascript/index.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 

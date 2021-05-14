@@ -72,6 +72,7 @@ nav.navbar-trasparente {
 	display: table-cell;
 	vertical-align: middle;
 	margin-left: 50%;
+	height: 480px;
 }
 
 /* ===================== Botoes ====================== */
@@ -221,7 +222,7 @@ h3 {
 	right: -57px;
 }
 
-.carouselbox {
+.carouselbox{
 	margin-top: 20px;
 	height: 200px;
 	width: auto;
@@ -344,7 +345,6 @@ movieRow--list{
 }
 
 .searchbtn {
-    background: #33ffad;
     width: 10%;
     border-radius: 5px;
     position: relative;
@@ -359,3 +359,35 @@ movieRow--list{
     font-size: 18px; 
     color: black;
 }
+/*id*/
+#postagem{
+	border-radius: 10px;
+    background: #fff;
+    padding: 10px ;
+    margin-bottom: 10px;
+    height: 320px;
+    }
+    
+    .data-postagem{
+        font-size: 14px;
+        border-bottom: 1px solid #b9c941;
+        display: block;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    	font-size: 18px;
+        }
+        /*classes*/
+        .img-postagem{
+            float: left;
+            margin: 0px 10px 5px 0px;
+        }
+
+        .postado{
+            border-left: 5px solid #b9c941;
+            padding-left: 5px;
+            display: block;
+            margin-top: 120px;
+            font-weight: bold;
+    		font-size: 18px;
+        }
