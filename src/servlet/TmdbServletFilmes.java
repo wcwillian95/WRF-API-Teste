@@ -70,7 +70,12 @@ public class TmdbServletFilmes extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doGet(request,response);
 
+	}
+	
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request,response);
 	}
 
 	private void ListarFilmes(String sURL, String classMovie) throws IOException {
@@ -107,20 +112,22 @@ public class TmdbServletFilmes extends HttpServlet {
 			rec.setId(arrayFilmes[i].getId());
 			rec.setMedia_type(arrayFilmes[i].getMedia_type());
 			rec.setOriginal_language(arrayFilmes[i].getOriginal_language());
-			if (arrayFilmes[i].getOriginal_title() == null || arrayFilmes[i].getOriginal_title() == "") {
-				rec.setOriginal_title(arrayFilmes[i].getOriginal_name());
-			} else {
-				rec.setOriginal_title(arrayFilmes[i].getOriginal_title());
-			}
+//			if (arrayFilmes[i].getOriginal_title() == null || arrayFilmes[i].getOriginal_title() == "") {
+//				rec.setOriginal_title(arrayFilmes[i].getOriginal_name());
+//			} else {
+//				rec.setOriginal_title(arrayFilmes[i].getOriginal_title());
+//			}
+			rec.setOriginal_title(arrayFilmes[i].getOriginal_title());
 			rec.setOverview(arrayFilmes[i].getOverview());
 			rec.setPoster_path(arrayFilmes[i].getPoster_path());
 			rec.setRelease_date(arrayFilmes[i].getRelease_date());
 			rec.setVote_average(arrayFilmes[i].getVote_average());
-			if (arrayFilmes[i].getOriginal_name() == null || arrayFilmes[i].getOriginal_name() == "") {
-				rec.setOriginal_name(arrayFilmes[i].getOriginal_title());
-			} else {
-				rec.setOriginal_name(arrayFilmes[i].getOriginal_name());
-			}
+//			if (arrayFilmes[i].getOriginal_name() == null || arrayFilmes[i].getOriginal_name() == "") {
+//				rec.setOriginal_name(arrayFilmes[i].getOriginal_title());
+//			} else {
+//				rec.setOriginal_name(arrayFilmes[i].getOriginal_name());
+//			}
+			rec.setOriginal_name(arrayFilmes[i].getOriginal_name());
 
 			if (classMovie == "recomendados") {
 				listaFilmes.AddListaFilmes(rec);

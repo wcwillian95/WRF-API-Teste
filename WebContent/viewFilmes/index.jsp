@@ -6,6 +6,7 @@
 ArrayList<TmdbRecomendados> listaRecomendados = (ArrayList<TmdbRecomendados>) request.getAttribute("listaRecomendados");
 ArrayList<TmdbRecomendados> listaemAlta = (ArrayList<TmdbRecomendados>) request.getAttribute("listaEmAlta");
 ArrayList<TmdbRecomendados> listaOriginais = (ArrayList<TmdbRecomendados>) request.getAttribute("listaOriginais");
+String directMovie = "";
 %>
 
 
@@ -109,9 +110,29 @@ ArrayList<TmdbRecomendados> listaOriginais = (ArrayList<TmdbRecomendados>) reque
 										<%
 										for (int i = 0; i < listaRecomendados.size(); i++) {
 										%>
-										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>"
-											title="<%=listaRecomendados.get(i).getOriginal_name()%>" />
+										<div hidden="true">
+											<%
+											if (listaRecomendados.get(i).getOriginal_name() == null) {
+											%>
+											<%=directMovie = "detailMovie"%>
+											<%
+											} else {
+											%>
+											<%=directMovie = "detailTV"%>
+											<%
+											}
+											%>
+										</div>
+										<form action="<%=directMovie%>" method="get">
+											<input type="text" class="input" name="<%=directMovie%>"
+												value="<%=listaRecomendados.get(i).getId()%>" hidden="true">
+											<button id="searchButton" type="submit"
+												style="background-color: #000">
+												<img class="slider-img"
+													src="https://image.tmdb.org/t/p/w300<%=listaRecomendados.get(i).getPoster_path()%>"
+													title="<%=listaRecomendados.get(i).getOriginal_title()%>" />
+											</button>
+										</form>
 										<%
 										}
 										%>
@@ -142,9 +163,16 @@ ArrayList<TmdbRecomendados> listaOriginais = (ArrayList<TmdbRecomendados>) reque
 										<%
 										for (int i = 0; i < listaemAlta.size(); i++) {
 										%>
-										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
-											title="<%=listaemAlta.get(i).getOriginal_name()%>" />
+										<form action="detailMovie" method="get">
+											<input type="text" class="input" name="detailMovie"
+												value="<%=listaemAlta.get(i).getId()%>" hidden="true">
+											<button id="searchButton" type="submit"
+												style="background-color: #000">
+												<img class="slider-img"
+													src="https://image.tmdb.org/t/p/w300<%=listaemAlta.get(i).getPoster_path()%>"
+													title="<%=listaemAlta.get(i).getOriginal_title()%>" />
+											</button>
+										</form>
 										<%
 										}
 										%>
@@ -174,9 +202,16 @@ ArrayList<TmdbRecomendados> listaOriginais = (ArrayList<TmdbRecomendados>) reque
 										<%
 										for (int i = 0; i < listaOriginais.size(); i++) {
 										%>
-										<img class="slider-img"
-											src="https://image.tmdb.org/t/p/w300<%=listaOriginais.get(i).getPoster_path()%>"
-											title="<%=listaOriginais.get(i).getOriginal_name()%>" />
+										<form action="detailTV" method="get">
+											<input type="text" class="input" name="detailTV"
+												value="<%=listaOriginais.get(i).getId()%>" hidden="true">
+											<button id="searchButton" type="submit"
+												style="background-color: #111">
+												<img class="slider-img"
+													src="https://image.tmdb.org/t/p/w300<%=listaOriginais.get(i).getPoster_path()%>"
+													title="<%=listaOriginais.get(i).getOriginal_name()%>" />
+											</button>
+										</form>
 										<%
 										}
 										%>
